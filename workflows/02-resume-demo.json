@@ -1,0 +1,96 @@
+{
+  "name": "DEMO 02 | Resume fictional item (offline)",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "demo-trigger-02",
+      "name": "Manual Trigger",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        240,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// A pre-existing partial checkpoint, recreated with fictional data.\nreturn [{ json: {\n  id: 'demo-a', name: 'Harbor Studio',\n  photos: ['Living', 'Kitchen', 'Terrace'],\n  completed: [{ photo: 1, caption: 'Fictional living room' }],\n  nextPhoto: 1, status: 'PARTIAL'\n}}];"
+      },
+      "id": "demo-checkpoint-02",
+      "name": "Load synthetic checkpoint",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        490,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const saved = $input.first().json;\nconst completed = [...saved.completed];\nfor (let i = saved.nextPhoto; i < saved.photos.length; i++) {\n  // LOCAL MOCK: a synthetic label, not an AI API request.\n  completed.push({ photo: i + 1, caption: `Mock: ${saved.photos[i]}` });\n}\nconst valid = completed.length === saved.photos.length &&\n  completed.every((x, i) => x.photo === i + 1);\nreturn [{ json: { ...saved, completed, nextPhoto: completed.length,\n  status: valid ? 'VALIDATED' : 'PARTIAL', safeToExport: valid } }];"
+      },
+      "id": "demo-resume-02",
+      "name": "Resume remaining items",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        740,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const result = $input.first().json;\nreturn [{ json: { status: result.status,\n  safePreview: result.safeToExport ? {\n    id: result.id, name: result.name, captions: result.completed\n  } : null,\n  note: 'Demo-only output. No external database is called.'\n}}];"
+      },
+      "id": "demo-output-02",
+      "name": "Validate safe preview",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        990,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Manual Trigger": {
+      "main": [
+        [
+          {
+            "node": "Load synthetic checkpoint",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Load synthetic checkpoint": {
+      "main": [
+        [
+          {
+            "node": "Resume remaining items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Resume remaining items": {
+      "main": [
+        [
+          {
+            "node": "Validate safe preview",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "pinData": {},
+  "tags": []
+}

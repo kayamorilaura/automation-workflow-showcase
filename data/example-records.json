@@ -1,0 +1,20 @@
+[
+  {
+    "id": "demo-001",
+    "name": "Harbor Studio",
+    "photos": ["Bright living room", "Small dining area"],
+    "location": "Fictional Coast"
+  },
+  {
+    "id": "demo-002",
+    "name": "Garden Loft",
+    "photos": ["Open-plan kitchen", "Bedroom", "Terrace"],
+    "location": "Fictional Valley"
+  },
+  {
+    "id": "demo-003",
+    "name": "Cedar House",
+    "photos": ["Living room", "Kitchen", "Garden", "Bedroom", "Patio"],
+    "location": "Fictional Hills"
+  }
+]

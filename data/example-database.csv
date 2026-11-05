@@ -1,0 +1,4 @@
+Name,Record ID,Status,Photo count,Next photo,Issue type
+Harbor Studio,demo-001,READY,2,0,
+Garden Loft,demo-002,PARTIAL,3,1,SIMULATED_RATE_LIMIT
+Cedar House,demo-003,VALIDATED,5,5,

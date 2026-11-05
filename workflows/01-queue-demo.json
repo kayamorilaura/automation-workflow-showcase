@@ -1,0 +1,73 @@
+{
+  "name": "DEMO 01 | Queue fictional records (offline)",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "demo-trigger-01",
+      "name": "Manual Trigger",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        240,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const fake = [\n  { id: 'demo-a', name: 'Harbor Studio', photos: ['Living', 'Kitchen'] },\n  { id: 'demo-b', name: 'Garden Loft', photos: ['Kitchen', 'Bedroom', 'Terrace'] },\n  { id: 'demo-c', name: 'Cedar House', photos: ['Living', 'Kitchen', 'Patio', 'Bedroom'] },\n];\nreturn fake.map(record => ({ json: record }));"
+      },
+      "id": "demo-source-01",
+      "name": "Synthetic dataset",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        470,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "const queue = $input.all().map(({json}) => ({ ...json, photoCount: json.photos.length }))\n  .filter(x => x.id && x.photoCount > 0)\n  .sort((a,b) => a.photoCount - b.photoCount || a.id.localeCompare(b.id));\nreturn queue.map((item, index) => ({ json: { ...item, queuePosition: index + 1, status: 'READY' } }));"
+      },
+      "id": "demo-queue-01",
+      "name": "Validate and prioritize",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        700,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Manual Trigger": {
+      "main": [
+        [
+          {
+            "node": "Synthetic dataset",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Synthetic dataset": {
+      "main": [
+        [
+          {
+            "node": "Validate and prioritize",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "pinData": {},
+  "tags": []
+}

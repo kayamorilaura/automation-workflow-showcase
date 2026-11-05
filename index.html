@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Offline demonstration of workflow orchestration, checkpoints, validation and browser automation.">
+  <title>Workflow Systems — Laura Kayamori</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar"><span class="wordmark">Laura Kayamori <span class="muted">/ automation systems</span></span><a href="https://github.com/kayamorilaura" rel="noreferrer">GitHub ↗</a></header>
+
+    <section class="intro">
+      <p class="eyebrow">ENGINEERING CASE STUDY · OFFLINE DEMO</p>
+      <h1>Connected systems.<br><span class="soft">Less manual work.</span></h1>
+      <p class="lead">A small, self-contained demonstration of queueing, resumable processing, validation and browser-side tooling.</p>
+      <p class="note">Inspired by real automation work, rebuilt with fictional data. This is not a client workflow or a live integration.</p>
+    </section>
+
+    <section aria-labelledby="architecture">
+      <div class="heading"><div><p class="eyebrow">01 / SYSTEM OVERVIEW</p><h2 id="architecture">Two workflows, one pipeline</h2></div><span class="meta">Architecture only — not production exports</span></div>
+      <div class="diagrams">
+        <article class="pane"><div class="pane-title"><span>01 — Discovery & queue</span><span class="tag">sort + select</span></div><img src="assets/01-discovery.svg" alt="Diagram: trigger, demo records, count photos, order queue, validate item and process" loading="lazy"></article>
+        <article class="pane"><div class="pane-title"><span>02 — Recovery & validation</span><span class="tag">checkpoint + resume</span></div><img src="assets/02-recovery.svg" alt="Diagram: load checkpoint, resume operation, validate completeness, and output preview or partial status" loading="lazy"></article>
+      </div>
+    </section>
+
+    <section aria-labelledby="simulator">
+      <div class="heading"><div><p class="eyebrow">02 / LIVE SIMULATION</p><h2 id="simulator">Try the failure path</h2></div><span class="meta">Runs entirely in your browser</span></div>
+      <div class="pane simulator">
+        <div class="toolbar"><button id="process" type="button">Process next</button><button id="limit" type="button" class="ghost">Simulate rate limit</button><button id="reset" type="button" class="ghost">Reset</button><button id="export" type="button" class="ghost">Export validated JSON</button></div>
+        <p class="hint">Try “Simulate rate limit”, then “Process next” to resume without repeating the same photo.</p>
+        <div class="table-wrap"><table><thead><tr><th>Fictional record</th><th>Photos</th><th>Processed</th><th>State</th></tr></thead><tbody id="records"><tr><td colspan="4">Loading demo records…</td></tr></tbody></table></div>
+        <div class="event-log"><span class="mono">LATEST EVENT</span><span id="event" role="status" aria-live="polite">Ready to run. No external services connected.</span></div>
+      </div>
+    </section>
+
+    <section aria-labelledby="components">
+      <div class="heading"><div><p class="eyebrow">03 / COMPONENTS</p><h2 id="components">Small pieces, connected</h2></div></div>
+      <div class="feature-grid">
+        <article class="feature"><span class="feature-no">01</span><h3>Queue & state</h3><p>Smallest jobs first, checkpoints after each simulated item, retry from the last position.</p><code>src/engine.js</code></article>
+        <article class="feature"><span class="feature-no">02</span><h3>Mock workspace DB</h3><p>Example records and a schema for states, progress, issue type and review-ready output.</p><code>data/ · docs/notion-schema.md</code></article>
+        <article class="feature"><span class="feature-no">03</span><h3>Browser userscripts</h3><p>Manual autofill and completeness audit on a local demo form. Nothing touches a real website.</p><a href="demo/editor.html">Open local demo form ↗</a></article>
+      </div>
+    </section>
+
+    <footer><span>Built as an independent, synthetic technical showcase.</span><span>JavaScript · n8n concepts · data validation · browser tooling</span></footer>
+  </main>
+  <script type="module" src="src/app.js"></script>
+</body>
+</html>

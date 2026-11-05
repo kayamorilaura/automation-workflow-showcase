@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Fictional content editor — offline</title><link rel="stylesheet" href="../assets/style.css"></head>
+<body data-demo-editor="safe-offline-v1">
+  <main class="shell demo-form">
+    <a href="../index.html" class="back">← Back to showcase</a>
+    <p class="eyebrow">LOCAL TEST PAGE</p>
+    <h1 style="font-size:42px">Fictional listing editor</h1>
+    <p class="lead">A deliberately empty form for testing the two userscripts. No credentials, no save action and no real property data.</p>
+    <p class="note">Serve this project at <code>http://localhost:4173</code> to make the demo userscripts eligible to run. Scripts require a manual click.</p>
+    <div id="demo-script-status" class="success-box" role="status" aria-live="polite"></div>
+    <form id="demo-content-form" autocomplete="off">
+      <div class="form-group"><h2>Listing text</h2><div class="form-grid">
+        <label class="field">English title<input name="title-en" placeholder="Title"></label>
+        <label class="field">Portuguese title<input name="title-pt" placeholder="Título"></label>
+        <label class="field">Spanish title<input name="title-es" placeholder="Título"></label>
+        <label class="field">French title<input name="title-fr" placeholder="Titre"></label>
+        <label class="field">English description<textarea name="description-en" placeholder="Description"></textarea></label>
+        <label class="field">Portuguese description<textarea name="description-pt" placeholder="Descrição"></textarea></label>
+        <label class="field">Spanish description<textarea name="description-es" placeholder="Descripción"></textarea></label>
+        <label class="field">French description<textarea name="description-fr" placeholder="Description"></textarea></label>
+      </div></div>
+      <div class="form-group"><h2>Image metadata</h2><div class="form-grid">
+        <label class="field">English alt text<input name="alt-en" placeholder="Alt text"></label>
+        <label class="field">Portuguese alt text<input name="alt-pt" placeholder="Texto alternativo"></label>
+        <label class="field">Spanish alt text<input name="alt-es" placeholder="Texto alternativo"></label>
+        <label class="field">French alt text<input name="alt-fr" placeholder="Texte alternatif"></label>
+      </div></div>
+    </form>
+    <p class="note">There is intentionally no submit or network integration. To test: install the userscripts in Tampermonkey, reload this page, click “Fill demo”, then “Audit demo”.</p>
+  </main>
+</body>
+</html>

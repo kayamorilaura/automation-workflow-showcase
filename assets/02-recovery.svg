@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1030" height="340" viewBox="0 0 1030 340" role="img" aria-label="FLOW B — RESUME &amp; VALIDATE">
+    <rect width="100%" height="100%" rx="14" fill="#15181b"/>
+    <style>text{font-family:Inter,system-ui,sans-serif}.label{fill:#e5e6e4;font-size:17px;font-weight:600}.detail{fill:#a3a9a8;font-size:12px}.sub{fill:#aab7ad;font-size:13px}.line{stroke:#728079;stroke-width:2;fill:none;marker-end:url(#arrow)}.box{fill:#242a2c;stroke:#5b6b63;stroke-width:1.5}</style>
+    <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#728079"/></marker></defs>
+    <text x="27" y="33" class="sub">FLOW B — RESUME &amp; VALIDATE</text><text x="27" y="53" class="detail">Partial progress is a first-class state, not lost work</text>
+<path d="M 190 154.0 L 226 154.0" class="line"/>
+<path d="M 394 154.0 L 430 154.0" class="line"/>
+<path d="M 518.0 190 L 518.0 134.0 L 722.0 134.0 L 722.0 70" class="line"/>
+<path d="M 518.0 190 L 518.0 196.0 L 722.0 196.0 L 722.0 194" class="line"/>
+<rect class="box" x="30" y="118" width="160" height="72" rx="9"/>
+<text class="label" x="42" y="148">Load progress</text>
+<text class="detail" x="42" y="170">checkpoint</text>
+<rect class="box" x="234" y="118" width="160" height="72" rx="9"/>
+<text class="label" x="246" y="148">Resume</text>
+<text class="detail" x="246" y="170">remaining photos</text>
+<rect class="box" x="438" y="118" width="160" height="72" rx="9"/>
+<text class="label" x="450" y="148">Check result</text>
+<text class="detail" x="450" y="170">complete?</text>
+<rect class="box" x="642" y="78" width="160" height="72" rx="9"/>
+<text class="label" x="654" y="108">Safe output</text>
+<text class="detail" x="654" y="130">validated only</text>
+<rect class="box" x="642" y="202" width="160" height="72" rx="9"/>
+<text class="label" x="654" y="232">Keep partial</text>
+<text class="detail" x="654" y="254">retry later</text>
+</svg>
